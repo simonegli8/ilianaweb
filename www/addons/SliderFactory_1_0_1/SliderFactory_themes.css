@@ -1,0 +1,330 @@
+/*
+######################################################################
+CSS for gpEasy Slider Factory - Slider Themes
+Author: J. Krausz
+Date: 2016-04-28
+Version: 1.0.1
+######################################################################
+*/
+
+
+/* ============================= */
+/* === slider theme: default === */
+/* ============================= */
+
+.gpSliderTheme-default .filetype-slider_factory {
+position:absolute!important;
+left:0;
+bottom:0;
+right:0;
+height:3em;
+z-index:101;
+text-align:center;
+}
+
+.gpSliderTheme-default .gpSlideWrapper {}
+
+.gpSliderTheme-default .gpSlide {
+background-color:#909DA8;
+}
+
+.gpSliderTheme-default .gpSlide.filetype-text,
+.gpSliderTheme-default .gpSlide.simple_blog_slide  {
+padding:2.5em 5.5em 5.5em 5.5em;
+}
+
+/* --- prev/next --- */
+.gpSliderTheme-default .gpPrevSlide, 
+.gpSliderTheme-default .gpNextSlide {
+display:block;
+position:absolute;
+top:0;
+width:72px;
+height:100%;
+line-height:100%;
+cursor:pointer;
+text-align:center;
+text-indent:80px;
+white-space:nowrap;
+overflow:hidden;
+z-index:100;
+}
+.gpSliderTheme-default .gpPrevSlide { left:0; }
+.gpSliderTheme-default .gpNextSlide { right:0; }
+.gpSliderTheme-default .gpPrevSlide, .gpSliderTheme-default .gpPrevSlide:active, .gpSliderTheme-default .gpPrevSlide:focus, 
+.gpSliderTheme-default .gpNextSlide, .gpSliderTheme-default .gpNextSlide:active, .gpSliderTheme-default .gpNextSlide:focus {
+color:#ddd;
+color:rgba(224,224,224,0.8);
+outline:none!important;
+}
+.gpSliderTheme-default .gpPrevSlide:hover, 
+.gpSliderTheme-default .gpNextSlide:hover { 
+color:#eee;
+color:rgba(224,224,224,1);
+text-decoration:none!important;
+}
+.gpSliderTheme-default .gpPrevSlide:before,
+.gpSliderTheme-default .gpNextSlide:before { 
+display:block;
+position:absolute;
+top:50%;
+left:50%;
+width:48px;
+height:48px;
+margin:-24px 0 0 -24px;
+line-height:48px;
+font-family:"slidercontrols";
+font-size:48px;
+text-align:center;
+text-indent:0;
+text-shadow:0 1px 3px rgba(0,0,0,0.25), 0 0 8px rgba(0,0,0,0.125);
+}
+.gpSliderTheme-default .gpPrevSlide:before { content:"\e806"; }
+.gpSliderTheme-default .gpNextSlide:before { content:"\e807"; }
+
+/* --- pagination/indicators --- */
+.gpSliderTheme-default .gpSlideIndicators {
+position:relative;
+display:inline-block;
+font-size:1em;
+padding:0;
+margin:0;
+list-style:none;
+}
+.gpSliderTheme-default .gpSlideIndicators li {
+display:inline-block;
+position:relative;
+width:1.25em;
+height:1.25em;
+line-height:1.25em;
+overflow:hidden;
+text-indent:2em;
+white-space:nowrap;
+margin:0;
+color:#ddd;
+color:rgba(224,224,224,0.8);
+cursor:pointer;
+}
+.gpSliderTheme-default .gpSlideIndicators li:before {
+font-family:"slidercontrols";
+content:"\e80e";
+position:absolute;
+top:0;
+left:0;
+width:1.25em;
+height:1.25em;
+text-align:center;
+text-indent:0;
+text-shadow:0 1px 3px rgba(0,0,0,0.25), 0 0 8px rgba(0,0,0,0.125);
+}
+.gpSliderTheme-default .gpSlideIndicators li:hover {
+color:#eee;
+color:rgba(224,224,224,1);
+}
+.gpSliderTheme-default .gpSlideIndicators li.gpSlideActive:before {
+content:"\e804";
+}
+
+
+/* ========================== */
+/* === slider theme: text === */
+/* ========================== */
+
+.gpSliderTheme-text .filetype-slider_factory {
+position:absolute!important;
+left:0;
+bottom:0;
+right:0;
+height:3em;
+z-index:101;
+text-align:center;
+}
+
+.gpSliderTheme-text .gpSlideWrapper {}
+
+.gpSliderTheme-text .gpSlide {
+background-color:#D4D9DB;
+box-shadow:inset 0 1px 3px rgba(0,0,0,0.25), inset 0 0 8px rgba(0,0,0,0.125);
+}
+
+.gpSliderTheme-text .gpSlide.filetype-text,
+.gpSliderTheme-text .gpSlide.simple_blog_slide  {
+padding:2.5em 6em 5em 6em;
+}
+
+/* --- prev/next --- */
+.gpSliderTheme-text .gpPrevSlide, 
+.gpSliderTheme-text .gpNextSlide {
+display:block;
+position:absolute;
+top:50%;
+min-width:4em;
+height:3em;
+line-height:3em;
+padding:0 0.75em;
+margin:-1.5em 0 0 0;
+cursor:pointer;
+text-align:center;
+white-space:nowrap;
+z-index:100;
+background:#fff;
+background:rgba(255,255,255,0.75);
+box-shadow:0 1px 3px rgba(0,0,0,0.25), 0 0 8px rgba(0,0,0,0.125);
+}
+.gpSliderTheme-text .gpPrevSlide { left:0; }
+.gpSliderTheme-text .gpNextSlide { right:0; }
+.gpSliderTheme-text .gpPrevSlide, .gpSliderTheme-text .gpPrevSlide:active, .gpSliderTheme-text .gpPrevSlide:focus, 
+.gpSliderTheme-text .gpNextSlide, .gpSliderTheme-text .gpNextSlide:active, .gpSliderTheme-text .gpNextSlide:focus {
+outline:none!important;
+}
+.gpSliderTheme-text .gpPrevSlide:hover, 
+.gpSliderTheme-text .gpNextSlide:hover { 
+background:rgba(255,255,255,1);
+}
+
+/* --- pagination/indicators --- */
+.gpSliderTheme-text .gpSlideIndicators {
+position:relative;
+display:inline-block;
+font-size:1em;
+padding:0;
+margin:0;
+list-style:none;
+}
+.gpSliderTheme-text .gpSlideIndicators li {
+display:inline-block;
+position:relative;
+min-width:1.5em;
+height:1.5em;
+line-height:1.5em;
+padding:0 0.25em;
+margin:0 0.25em;
+cursor:pointer;
+background:#fff;
+background:rgba(255,255,255,0.75);
+box-shadow:0 1px 3px rgba(0,0,0,0.25), 0 0 8px rgba(0,0,0,0.125);
+}
+.gpSliderTheme-text .gpSlideIndicators li:hover,
+.gpSliderTheme-text .gpSlideIndicators li.gpSlideActive {
+background:rgba(255,255,255,1);
+}
+
+
+/* ============================ */
+/* === slider theme: navbar === */
+/* ============================ */
+
+.gpSliderTheme-navbar .filetype-slider_factory {
+position:absolute!important;
+left:0;
+bottom:0;
+right:0;
+height:3em;
+z-index:100;
+text-align:center;
+background:#fff;
+background:rgba(0,0,0,0.75)
+}
+
+.gpSliderTheme-navbar .gpSlideWrapper {}
+
+.gpSliderTheme-navbar .gpSlide {
+background-color:#ECF0F1;
+}
+
+.gpSliderTheme-navbar .gpSlide.filetype-text,
+.gpSliderTheme-navbar .gpSlide.simple_blog_slide  {
+padding:1.5em 2em 4.5em 2em;
+}
+
+
+/* --- prev/next --- */
+.gpSliderTheme-navbar .gpPrevSlide, 
+.gpSliderTheme-navbar .gpNextSlide {
+display:block;
+position:absolute;
+bottom:0;
+width:3em;
+height:3em;
+line-height:3em;
+cursor:pointer;
+text-align:center;
+text-indent:4em;
+white-space:nowrap;
+overflow:hidden;
+z-index:101;
+}
+.gpSliderTheme-navbar .gpPrevSlide { left:0; }
+.gpSliderTheme-navbar .gpNextSlide { right:0; }
+.gpSliderTheme-navbar .gpPrevSlide, .gpSliderTheme-navbar .gpPrevSlide:active, .gpSliderTheme-navbar .gpPrevSlide:focus, 
+.gpSliderTheme-navbar .gpNextSlide, .gpSliderTheme-navbar .gpNextSlide:active, .gpSliderTheme-navbar .gpNextSlide:focus {
+color:#fff;
+color:rgba(255,255,255,0.5);
+outline:none!important;
+}
+.gpSliderTheme-navbar .gpPrevSlide:hover, 
+.gpSliderTheme-navbar .gpNextSlide:hover { 
+color:#fff;
+color:rgba(255,255,255,0.75);
+text-decoration:none!important;
+}
+.gpSliderTheme-navbar .gpPrevSlide:before,
+.gpSliderTheme-navbar .gpNextSlide:before { 
+display:block;
+position:absolute;
+top:0;
+left:0;
+width:3em;
+height:3em;
+margin:0;
+line-height:3em;
+font-family:"slidercontrols";
+font-size:1em;
+text-align:center;
+text-indent:0;
+}
+.gpSliderTheme-navbar .gpPrevSlide:before { content:"\e81d"; }
+.gpSliderTheme-navbar .gpNextSlide:before { content:"\e81e"; }
+
+/* --- pagination/indicators --- */
+.gpSliderTheme-navbar .gpSlideIndicators {
+position:relative;
+display:inline-block;
+font-size:1em;
+padding:0;
+margin:0;
+list-style:none;
+}
+.gpSliderTheme-navbar .gpSlideIndicators li {
+display:inline-block;
+position:relative;
+width:1.25em;
+height:3em;
+line-height:3em;
+overflow:hidden;
+text-indent:2em;
+white-space:nowrap;
+margin:0;
+color:#fff;
+color:rgba(255,255,250,0.5);
+cursor:pointer;
+}
+.gpSliderTheme-navbar .gpSlideIndicators li:before {
+font-family:"slidercontrols";
+content:"\e80e";
+position:absolute;
+top:0;
+left:0;
+width:1.25em;
+height:1.25em;
+text-align:center;
+text-indent:0;
+}
+.gpSliderTheme-navbar .gpSlideIndicators li:hover {
+color:rgba(255,255,255,0.75);
+}
+.gpSliderTheme-navbar .gpSlideIndicators li.gpSlideActive:before {
+content:"\e804";
+}
+
+

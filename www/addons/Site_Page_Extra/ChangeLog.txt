@@ -1,0 +1,22 @@
+1.05
+Fixed Undefined index: label in admin section
+
+1.04
+Fixed Admin page delete confirmation title
+
+1.03
+Admin Page delete default content link
+Updated minimum gpeasy version
+Fixed Undefined property: update_class::$gp_index error
+Fixed Admin Page delete link for each position
+
+1.02
+Plugin default content html fix
+Show extra page default content on all pages just like extra content
+
+1.01
+Edit Page Extra default content
+
+1.0
+Edit Page Extra positions via inline edits
+Admin Page listing all positions to edit

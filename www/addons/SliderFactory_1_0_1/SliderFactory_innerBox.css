@@ -1,0 +1,45 @@
+/*
+######################################################################
+CSS for gpEasy Slider Factory - Inner Box Classes
+Author: J. Krausz
+Date: 2016-04-28
+Version: 1.0.1
+######################################################################
+*/
+
+/*
+ *
+ * These Box classes are meant to be used for ELEMENTS INSIDE slides and NOT for the slides themselves!
+ * You can use them for sub-sections if the slides themselves are section wrappers
+ *
+ * Never use "display:none" for inner element hiding as it might break 
+ * reponsive height calculations - use visibility:hidden instead.
+ *
+ */
+
+
+.innerBox-lighten, 
+.innerBox-darken {
+position:relative;
+margin-top:2.5em;
+margin-bottom:5em;
+padding:1.5em 2em 1.5em 2em;
+}
+
+.innerBox-lighten>div>*:first-child, 
+.innerBox-darken>div>*:first-child {
+margin-top:0;
+}
+
+.innerBox-lighten>div>*:last-child, 
+.innerBox-darken>div>*:last-child {
+margin-bottom:0;
+}
+
+.innerBox-lighten { 
+background-color:rgba(255,255,255,0.5);
+}
+
+.innerBox-darken {
+background-color:rgba(0,0,0,0.5);
+}

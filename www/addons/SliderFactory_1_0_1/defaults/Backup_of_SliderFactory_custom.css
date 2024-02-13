@@ -1,0 +1,126 @@
+/*
+###########################################################################
+CSS for gpEasy Slider Factory - Custom Stylesheet (originates from default)
+Author: J. Krausz
+Date: 2016-04-28
+Version: 1.0.1
+######################################################################
+*/
+
+
+/* ============================= */
+/* === slider theme: custom === */
+/* ============================= */
+
+.gpSliderTheme-custom .filetype-slider_factory {
+position:absolute!important;
+left:0;
+bottom:0;
+right:0;
+height:3em;
+z-index:101;
+text-align:center;
+}
+
+.gpSliderTheme-custom .gpSlideWrapper {}
+
+.gpSliderTheme-custom .gpSlide {
+background-color:#909DA8;
+}
+
+.gpSliderTheme-custom .gpSlide.filetype-text,
+.gpSliderTheme-custom .gpSlide.simple_blog_slide  {
+padding:2.5em 5.5em 5.5em 5.5em;
+}
+
+/* --- prev/next --- */
+.gpSliderTheme-custom .gpPrevSlide, 
+.gpSliderTheme-custom .gpNextSlide {
+display:block;
+position:absolute;
+top:0;
+width:72px;
+height:100%;
+line-height:100%;
+cursor:pointer;
+text-align:center;
+text-indent:80px;
+white-space:nowrap;
+overflow:hidden;
+z-index:100;
+}
+.gpSliderTheme-custom .gpPrevSlide { left:0; }
+.gpSliderTheme-custom .gpNextSlide { right:0; }
+.gpSliderTheme-custom .gpPrevSlide, .gpSliderTheme-custom .gpPrevSlide:active, .gpSliderTheme-custom .gpPrevSlide:focus, 
+.gpSliderTheme-custom .gpNextSlide, .gpSliderTheme-custom .gpNextSlide:active, .gpSliderTheme-custom .gpNextSlide:focus {
+color:#ddd;
+color:rgba(224,224,224,0.8);
+outline:none!important;
+}
+.gpSliderTheme-custom .gpPrevSlide:hover, 
+.gpSliderTheme-custom .gpNextSlide:hover { 
+color:#eee;
+color:rgba(224,224,224,1);
+text-decoration:none!important;
+}
+.gpSliderTheme-custom .gpPrevSlide:before,
+.gpSliderTheme-custom .gpNextSlide:before { 
+display:block;
+position:absolute;
+top:50%;
+left:50%;
+width:48px;
+height:48px;
+margin:-24px 0 0 -24px;
+line-height:48px;
+font-family:"slidercontrols";
+font-size:48px;
+text-align:center;
+text-indent:0;
+text-shadow:0 1px 3px rgba(0,0,0,0.25), 0 0 8px rgba(0,0,0,0.125);
+}
+.gpSliderTheme-custom .gpPrevSlide:before { content:"\e806"; }
+.gpSliderTheme-custom .gpNextSlide:before { content:"\e807"; }
+
+/* --- pagination/indicators --- */
+.gpSliderTheme-custom .gpSlideIndicators {
+position:relative;
+display:inline-block;
+font-size:1em;
+padding:0;
+margin:0;
+list-style:none;
+}
+.gpSliderTheme-custom .gpSlideIndicators li {
+display:inline-block;
+position:relative;
+width:1.25em;
+height:1.25em;
+line-height:1.25em;
+overflow:hidden;
+text-indent:2em;
+white-space:nowrap;
+margin:0;
+color:#ddd;
+color:rgba(224,224,224,0.8);
+cursor:pointer;
+}
+.gpSliderTheme-custom .gpSlideIndicators li:before {
+font-family:"slidercontrols";
+content:"\e80e";
+position:absolute;
+top:0;
+left:0;
+width:1.25em;
+height:1.25em;
+text-align:center;
+text-indent:0;
+text-shadow:0 1px 3px rgba(0,0,0,0.25), 0 0 8px rgba(0,0,0,0.125);
+}
+.gpSliderTheme-custom .gpSlideIndicators li:hover {
+color:#eee;
+color:rgba(224,224,224,1);
+}
+.gpSliderTheme-custom .gpSlideIndicators li.gpSlideActive:before {
+content:"\e804";
+}

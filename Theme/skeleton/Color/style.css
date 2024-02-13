@@ -1,0 +1,42 @@
+body,html{
+	margin-top:0;
+	}
+
+body{
+	width:1000px;
+	margin:0 auto 20px auto;
+	font-size:14px;
+	}
+
+#menu li,
+#menu li a{
+	display:inline-block;
+	}
+
+#menu li a{
+	margin:0 10px;
+	}
+
+#content{
+	width:780px;
+	float:left;
+	border:1px solid #ccc;
+	padding:9px;
+	margin-bottom:20px;
+	}
+
+#column{
+	width:160px;
+	float:left;
+	margin-left:20px;
+	padding:9px;
+	border:1px solid #ccc;
+	margin-bottom:20px;
+	}
+
+#footer{
+	clear:both;
+	font-size:12px;
+	padding:9px;
+	border:1px solid #ccc;
+	}

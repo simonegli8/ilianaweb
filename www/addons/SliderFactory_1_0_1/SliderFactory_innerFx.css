@@ -1,0 +1,102 @@
+/*
+######################################################################
+CSS for gpEasy Slider Factory - Inner Element Effects
+Author: J. Krausz
+Date: 2016-04-28
+Version: 1.0.1
+######################################################################
+*/
+
+/*
+ *
+ * These classes are meant to be used for ELEMENTS INSIDE slides and NOT for the slides themselves!
+ * You can use them for sub-sections if the slides themselves are section wrappers
+ * or you can apply them to inner elements using CKEditor/Source
+ *
+ * .gpSlide         = default state for inactive slides
+ * .gpSlide-in      = class during in-transition
+ * .gpSlide-active  = class of active slide. applied after in-transition has completed and removed before out-transition starts
+ * .gpSlide-out     = class during out-transition
+ *
+ * Do not use "display:none" for inner element hiding as it might break reponsive height calculations - use visibility:hidden instead.
+ * Use opacity if you want to animate visibility.
+ *
+ * YOU WON'T SEE THESE EFFECTS ON INTERNET EXPLORER < 10
+ *
+ */
+
+
+/* -- fade -- */
+.gpSlide .innerFx-fade { 
+opacity:0; 
+-webkit-transition:0.5s ease-out;
+transition:0.5s ease-out;
+}
+.gpSlide-in .innerFx-fade {}
+.gpSlide-out .innerFx-fade {}
+.gpSlide-active .innerFx-fade { opacity:0.999; }
+
+
+
+/* -- nested-fade -- */
+.gpSlide .innerFx-nested-fade,
+.gpSlide .innerFx-nested-fade * { 
+opacity:0; 
+-webkit-transition:0.5s ease-out;
+transition:0.5s ease-out;
+}
+.gpSlide .innerFx-nested-fade { transition-delay:0.5s; }
+.gpSlide .innerFx-nested-fade *:nth-child(1) { transition-delay:0.75s; }
+.gpSlide .innerFx-nested-fade *:nth-child(2) { transition-delay:1s; }
+.gpSlide .innerFx-nested-fade *:nth-child(3) { transition-delay:1.25s; }
+.gpSlide .innerFx-nested-fade *:nth-child(4) { transition-delay:1.5s; }
+.gpSlide .innerFx-nested-fade *:nth-child(5) { transition-delay:1.75s; }
+.gpSlide .innerFx-nested-fade *:nth-child(6) { transition-delay:2s; }
+.gpSlide .innerFx-nested-fade *:nth-child(7) { transition-delay:2.25s; }
+.gpSlide .innerFx-nested-fade *:nth-child(8) { transition-delay:2.5s; }
+.gpSlide .innerFx-nested-fade *:nth-child(9) { transition-delay:2.75s; }
+.gpSlide .innerFx-nested-fade *:nth-child(10) { transition-delay:3s; }
+.gpSlide .innerFx-nested-fade *:nth-child(11) { transition-delay:3.25s; }
+.gpSlide .innerFx-nested-fade *:nth-child(12) { transition-delay:3.5s; }
+
+.gpSlide-in .innerFx-nested-fade {}
+.gpSlide-out .innerFx-nested-fade {}
+.gpSlide-active .innerFx-nested-fade,
+.gpSlide-active .innerFx-nested-fade * { 
+opacity:0.999; 
+}
+
+
+/* -- toast -- */
+.gpSlide .innerFx-toast { 
+-ms-transform:translate(0%,200%);
+-webkit-transform:translate(0%,200%);
+transform:translate(0%,200%);
+-webkit-transition:0.5s ease-out;
+transition:0.5s ease-out;
+}
+.gpSlide-in .innerFx-toast {}
+.gpSlide-out .innerFx-toast,
+.gpSlide-active .innerFx-toast { 
+-ms-transform:translate(0%,0%);
+-webkit-transform:translate(0%,0%);
+transform:translate(0%,0%);
+}
+
+
+/* -- early-toast -- */
+.gpSlide .innerFx-early-toast,
+.gpSlide-out .innerFx-early-toast { 
+-ms-transform:translate(0%,200%);
+-webkit-transform:translate(0%,200%);
+transform:translate(0%,200%);
+-webkit-transition:1s ease-out;
+transition:1s ease-out;
+}
+.gpSlide-in .innerFx-early-toast,
+.gpSlide-active .innerFx-early-toast { 
+-ms-transform:translate(0%,0%);
+-webkit-transform:translate(0%,0%);
+transform:translate(0%,0%);
+}
+

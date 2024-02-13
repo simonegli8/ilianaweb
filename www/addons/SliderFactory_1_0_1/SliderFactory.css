@@ -1,0 +1,104 @@
+/*
+######################################################################
+CSS for gpEasy Slider Factory - Common Styles
+Author: J. Krausz
+Date: 2016-04-28
+Version: 1.0.1
+######################################################################
+*/
+
+
+/* ### .makeFullWidth class ### */
+html {
+max-width:100%;
+overflow-x:hidden;
+}
+
+/* neutralize margin for fullWidth-sliderWrappers if first on a older bootstrap based theme page */
+body>#wrap>.container>#gpx_content>.gpSlideWrapper.makeFullWidth:first-of-type {
+margin-top:-10px;
+}
+
+/* neutralize margin for fullWidth-sliderWrappers if first on a new bootstrap SCSS based theme page */
+body>.container>#gpx_content>.gpSlideWrapper.makeFullWidth:first-of-type {
+margin-top:-22px;
+}
+
+/* expand section to viewport width */
+/* body:last-child to make IE<=8 ignore the rule, which doesn't understand vw/vh units */
+body:last-child .makeFullWidth {
+position:relative;
+left:50%;
+width:100vw;
+margin-left:-50vw;
+}
+
+
+
+/* "edit slider" overlay */
+.gpSlideWrapper:hover .filetype-slider_factory.editable_area:not(.gp_editing),
+.filetype-slider_factory.editable_area:not(.gp_editing):hover {
+background-image:url(img/edit_slider_overlay_pattern.png);
+background-repeat:repeat;
+background-position:0 100%;
+}
+
+/* out-of-wrapper warning */
+.sliderfacory-outOfWrapperWarning {
+background-color:rgba(250,70,20,0.75);
+color:#541F10;
+height:2.5em;
+text-align:center;
+}
+.sliderfacory-outOfWrapperWarning:before {
+content:"Slider Factory: out of wrapper section!";
+line-height:2.5em;
+}
+.filetype-wrapper_section .sliderfacory-outOfWrapperWarning {
+background-color:rgba(100,200,0,0.75);
+color:#2A3F15;
+}
+.filetype-wrapper_section .sliderfacory-outOfWrapperWarning:before {
+content:"Slider Factory: Please click 'Save & Close'";
+}
+
+
+/* === dynamically applied classes === */
+.gpSlideWrapper {
+position:relative;
+overflow:hidden;
+}
+
+.gpSlide,
+.gpSlideWrapper .filetype-include {
+position:absolute;
+top:0;
+left:0;
+width:100%!important;
+height:100%!important;
+margin:0!important;
+overflow:hidden;
+}
+
+.gpSlide.gp_editing { overflow-y:auto; }
+
+/* needed for disabling initial transitions and measuring auto height */
+.gpSlide-measureHeight { 
+height:auto!important; 
+}
+.gpSlide-noTransitions *,
+.gpSlide-measureHeight,
+.gpSlide-measureHeight * { 
+-webkit-transition:all 0s !important;
+-moz-transition:all 0s !important;
+-o-transition:all 0s !important;
+-ms-transition:all 0s !important;
+transition:all 0s !important;
+-webkit-transition:none !important;
+-moz-transition:none !important;
+-o-transition:none !important;
+-ms-transition:none !important;
+transition:none !important;
+}
+.gpSlide-measureHeight:after { clear:both; }
+.gpSlide-measureHeight:before { content:" "; display:table; }

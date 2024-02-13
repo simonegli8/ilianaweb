@@ -1,0 +1,17 @@
+# Some (older) Apache server configurations do not 
+# serve all Mimetypes correctly for HTML5 playback
+# In case put the following lines is into a file 
+# named .htaccess in your /data/_uploaded folder 
+
+AddType audio/mpeg mp3
+AddType audio/mp4 m4a
+AddType audio/ogg ogg
+AddType audio/ogg oga
+AddType audio/webm webma
+AddType audio/wav wav
+ 
+AddType video/mp4 mp4
+AddType video/mp4 m4v
+AddType video/ogg ogv
+AddType video/webm webm
+AddType video/webm webmv

@@ -1,0 +1,11 @@
+@font-face {
+    font-family: 'Day Roman';
+    src: url('DayRoman.eot');
+    src: url('DayRoman.eot?#iefix') format('embedded-opentype'),
+        url('DayRoman.woff2') format('woff2'),
+        url('DayRoman.woff') format('woff'),
+        url('DayRoman.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+

@@ -1,0 +1,48 @@
+/*
+######################################################################
+CSS classes for Typesetter CMS plugin Back2Top Button - Admin
+Author: J. Krausz
+Date: 2018-07-14
+Version 1.0.2
+######################################################################
+*/
+
+@font-face {
+font-family:'back2top';
+src:url('webfonts/back2top.eot?49944994');
+src:url('webfonts/back2top.eot?49944994#iefix') format('embedded-opentype'),
+    url('webfonts/back2top.woff?49944994') format('woff'),
+    url('webfonts/back2top.woff2?49944994') format('woff2'),
+    url('webfonts/back2top.ttf?49944994') format('truetype'),
+    url('webfonts/back2top.svg?49944994#back2top') format('svg');
+font-weight:normal;
+font-style:normal;
+}
+
+.smalltext {
+display:block;
+font-size:82.5%!important;
+color:#777!important;
+}
+
+/* override Bootstrap widths */
+#b2t_config_form input.gpinput,
+#b2t_config_form select.gpselect {
+width:auto;
+}
+
+#b2t_config_form .b2t_arrow_select label {
+  font-family:back2top!important; 
+  font-size:1.6em;
+  display:inline-block;
+  margin:0.3em 0.4em 0.3em 0;
+  color:#ccc;
+}
+
+#b2t_config_form .b2t_arrow_select input {
+  display: none;
+}
+
+#b2t_config_form .b2t_arrow_select input:checked + label {
+  color:#333;
+}

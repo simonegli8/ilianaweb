@@ -1,0 +1,78 @@
+/*
+######################################################################
+CSS base classes for Typesetter CMS plugin Back2Top Button - Admin
+Author: J. Krausz
+Date: 2018-07-14
+Version 1.0.2
+######################################################################
+*/
+
+@font-face {
+font-family:'back2top';
+src:url('webfonts/back2top.eot?49944994');
+src:url('webfonts/back2top.eot?49944994#iefix') format('embedded-opentype'),
+    url('webfonts/back2top.woff?49944994') format('woff'),
+    url('webfonts/back2top.woff2?49944994') format('woff2'),
+    url('webfonts/back2top.ttf?49944994') format('truetype'),
+    url('webfonts/back2top.svg?49944994#back2top') format('svg');
+font-weight:normal;
+font-style:normal;
+}
+
+.b2t-arrow:before {
+font-family:"back2top"!important;
+font-style:normal;
+font-size:1.25em;
+width:1em;
+font-weight:normal;
+speak:none;
+display:inline-block;
+margin:0;
+text-decoration:nonw;
+font-variant:normal;
+text-transform:none;
+text-align:center;
+-webkit-font-smoothing:antialiased;
+-moz-osx-font-smoothing:grayscale; 
+}
+
+.b2t-arrow-0:before  { content:'\e803'; }
+.b2t-arrow-1:before  { content:'\e801'; }
+.b2t-arrow-2:before  { content:'\e808'; }
+.b2t-arrow-3:before  { content:'\e809'; }
+.b2t-arrow-4:before  { content:'\e800'; }
+.b2t-arrow-5:before  { content:'\e806'; }
+.b2t-arrow-6:before  { content:'\e80a'; }
+.b2t-arrow-7:before  { content:'\e80c'; }
+.b2t-arrow-8:before  { content:'\e80f'; }
+.b2t-arrow-9:before  { content:'\e80d'; }
+.b2t-arrow-11:before { content:'\e80e'; }
+.b2t-arrow-12:before { content:'\e80b'; }
+.b2t-arrow-13:before { content:'\e810'; }
+.b2t-arrow-10:before { content:'\e802'; }
+.b2t-arrow-11:before { content:'\e80e'; }
+.b2t-arrow-14:before { content:'\e807'; }
+.b2t-arrow-15:before { content:'\e804'; }
+.b2t-arrow-16:before { content:'\e805'; }
+
+.gp_Back2Top {
+cursor:pointer;
+border:none;
+border-radius:4px;
+display:block;
+line-height:2.5em;
+margin:0;
+padding:0 0.65em;
+position:fixed;
+text-align:center;
+top:auto;
+vertical-align:middle;
+white-space:nowrap;
+z-index:9001;
+}
+
+.gp_Back2Top .b2t-text {
+display:inline-block;
+padding:0;
+margin:0;
+}

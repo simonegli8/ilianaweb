@@ -1,0 +1,47 @@
+@font-face {
+font-family:'back2top';
+src:url('back2top.eot?49944994');
+src:url('back2top.eot?49944994#iefix') format('embedded-opentype'),
+     url('back2top.woff?49944994') format('woff'),
+     url('back2top.woff2?49944994') format('woff2'),
+     url('back2top.ttf?49944994') format('truetype'),
+     url('back2top.svg?49944994#back2top') format('svg');
+font-weight:normal;
+font-style:normal;
+}
+
+[class^="icon-b2t"]:before, 
+[class*=" icon-b2t"]:before {
+font-family:"back2top";
+font-style:normal;
+font-weight:normal;
+speak:none;
+display:inline-block;
+text-decoration:inherit;
+width:1em;
+text-align:center;
+font-variant:normal;
+text-transform:none;
+line-height:1em;
+-webkit-font-smoothing:antialiased;
+-moz-osx-font-smoothing:grayscale; 
+}
+
+.icon-b2t-0:before { content:'\e803'; } 
+.icon-b2t-1:before { content:'\e801'; }
+.icon-b2t-2:before { content:'\e808'; }
+.icon-b2t-3:before { content:'\e809'; }
+.icon-b2t-4:before { content:'\e800'; }
+.icon-b2t-5:before { content:'\e806'; }
+.icon-b2t-6:before { content:'\e80a'; }
+.icon-b2t-7:before { content:'\e80c'; }
+.icon-b2t-8:before { content:'\e80f'; }
+.icon-b2t-9:before { content:'\e80d'; }
+.icon-b2t-11:before { content:'\e80e'; }
+.icon-b2t-12:before { content:'\e80b'; }
+.icon-b2t-13:before { content:'\e810'; }
+.icon-b2t-10:before { content:'\e802'; }
+.icon-b2t-11:before { content:'\e80e'; }
+.icon-b2t-14:before { content:'\e807'; }
+.icon-b2t-15:before { content:'\e804'; }
+.icon-b2t-16:before { content:'\e805'; }

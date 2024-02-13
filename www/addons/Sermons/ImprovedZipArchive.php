@@ -1,0 +1,565 @@
+<?php
+
+defined('is_running') or die('Not an entry point...');
+
+/**
+ * Copyright (c) 2011-2012, julp
+ * Is free software, licensed under BSD
+ *
+ * Hosted on github: https://github.com/julp/ImprovedZipArchive
+ * Documentation: https://github.com/julp/ImprovedZipArchive/wiki
+ **/
+class ImprovedZipArchive extends ZipArchive implements Iterator, Countable
+{
+    const ENC_OLD_EUROPEAN = 'IBM850'; # CP850
+    const ENC_OLD_NON_EUROPEAN = 'IBM437'; # CP437
+    //const ENC_NEW = 'UTF-8';
+    const ENC_DEFAULT = self::ENC_OLD_EUROPEAN;
+
+    protected $_fs_enc;      // File System encoding
+    protected $_php_int_enc; // PHP encoding
+    protected $_zip_int_enc; // ZIP archive encoding
+
+    protected $_it_pos = 0;  // Internal position of the iterator
+
+    public function __construct($fs_enc = '', $php_enc = '', $zip_enc = self::ENC_DEFAULT)
+    {
+        /*static $errors = array(
+            self::ER_OK          => 'No error',
+            self::ER_MULTIDISK   => 'Multi-disk zip archives not supported',
+            self::ER_RENAME      => 'Renaming temporary file failed',
+            self::ER_CLOSE       => 'Closing zip archive failed',
+            self::ER_SEEK        => 'Seek error',
+            self::ER_READ        => 'Read error',
+            self::ER_WRITE       => 'Write error',
+            self::ER_CRC         => 'CRC error',
+            self::ER_ZIPCLOSED   => 'Containing zip archive was closed',
+            self::ER_NOENT       => 'No such file',
+            self::ER_EXISTS      => 'File already exists',
+            self::ER_OPEN        => "Can't open file",
+            self::ER_TMPOPEN     => 'Failure to create temporary file',
+            self::ER_ZLIB        => 'Zlib error',
+            self::ER_MEMORY      => 'Malloc failure',
+            self::ER_CHANGED     => 'Entry has been changed',
+            self::ER_COMPNOTSUPP => 'Compression method not supported',
+            self::ER_EOF         => 'Premature EOF',
+            self::ER_INVAL       => 'Invalid argument',
+            self::ER_NOZIP       => 'Not a zip archive',
+            self::ER_INTERNAL    => 'Internal error',
+            self::ER_INCONS      => 'Zip archive inconsistent',
+            self::ER_REMOVE      => "Can't remove file",
+            self::ER_DELETED     => 'Entry has been deleted',
+        );*/
+
+        foreach (array($fs_enc, $php_enc, $zip_enc) as $enc) {
+            if (FALSE === iconv($enc, 'UTF-8', '')) {
+                throw new Exception(sprintf('Unknown encoding "%s"', $enc));
+            }
+        }
+
+        $this->_zip_int_enc = $zip_enc;
+
+        if (!$php_enc) {
+            $this->_php_int_enc = mb_internal_encoding();
+        } else {
+            if (!mb_internal_encoding($php_enc)) {
+                throw new Exception(sprintf('Unknown encoding "%s"', $php_enc));
+            }
+            $this->_php_int_enc = $php_enc;
+        }
+
+        if (!$fs_enc) {
+            $this->_fs_enc = mb_internal_encoding();
+        } else {
+            $this->_fs_enc = $fs_enc;
+        }
+    }
+
+    public function open($name, $flags = 0)
+    {
+        return parent::open($this->_phpToFs($name), $flags);
+    }
+
+    public static function read($name, $fs_enc = '', $php_enc = '', $zip_enc = self::ENC_DEFAULT)
+    {
+        $class = version_compare(PHP_VERSION, '5.3.0', '>=') ? get_called_class() : __CLASS__; // new static
+        $iza = new $class($fs_enc, $php_enc, $zip_enc);
+        if (TRUE !== $iza->open($name, 0)) {
+            return FALSE;
+        }
+
+        return $iza;
+    }
+
+
+
+    public static function create($name, $fs_enc = '', $php_enc = '', $zip_enc = self::ENC_DEFAULT)
+    {
+        $class = version_compare(PHP_VERSION, '5.3.0', '>=') ? get_called_class() : __CLASS__; // new static
+        $iza = new $class($fs_enc, $php_enc, $zip_enc);
+        if (TRUE !== $iza->open($name, self::CREATE | self::EXCL)) {
+            return FALSE;
+        }
+
+        return $iza;
+    }
+
+    public static function overwrite($name, $fs_enc = '', $php_enc = '', $zip_enc = self::ENC_DEFAULT)
+    {
+        $class = version_compare(PHP_VERSION, '5.3.0', '>=') ? get_called_class() : __CLASS__; // new static
+        $iza = new $class($fs_enc, $php_enc, $zip_enc);
+        if (TRUE !== $iza->open($name,  self::OVERWRITE)) {
+            return FALSE;
+        }
+
+        return $iza;
+    }
+
+    /**
+     * WARNING: due to a bug (see bug report #52211) fixed in PHP 5.4, iconv may fail without returning FALSE. *All* prior versions are affected !
+     * The following workaround may safely be deleted with PHP >= 5.4.0
+     **/
+
+    /* <iconv #52211 workaround> */
+    private static $have_iconv_error = FALSE;
+    private static $old_error_handler = NULL;
+
+    private static function _iconv_workaround52211_error_handler($no, $msg, $file, $line, $context)
+    {
+        $ret = FALSE;
+        self::$have_iconv_error = TRUE;
+        if (self::$old_error_handler) {
+            $ret = call_user_func_array(self::$old_error_handler, array($no, $msg, $file, $line, &$context));
+        }
+
+        return $ret;
+    }
+    /* </iconv #52211 workaround> */
+
+    protected static function _iconv_helper($from, $to, $string)
+    {
+        /* <iconv #52211 workaround> */
+        self::$have_iconv_error = FALSE;
+        self::$old_error_handler = set_error_handler(array(__CLASS__, '_iconv_workaround52211_error_handler'));
+        /* </iconv #52211 workaround> */
+        $ret = iconv($from, $to, $string);
+        /* <iconv #52211 workaround> */
+        restore_error_handler();
+        self::$old_error_handler = NULL;
+        /* </iconv #52211 workaround> */
+        if (FALSE === $ret
+            /* <iconv #52211 workaround> */
+            || self::$have_iconv_error
+            /* </iconv #52211 workaround> */
+        ) {
+            throw new Exception(sprintf('Illegal character in input string or due to the conversion from "%s" to "%s"', $from, $to));
+        }
+
+        return $ret;
+    }
+
+    protected function _phpToZip($string)
+    {
+        return self::_iconv_helper($this->_php_int_enc, $this->_zip_int_enc, $string);
+    }
+
+    protected function _zipToPHP($string)
+    {
+        return self::_iconv_helper($this->_zip_int_enc, $this->_php_int_enc, $string);
+    }
+
+    protected function _zipToFs($string)
+    {
+        return self::_iconv_helper($this->_zip_int_enc, $this->_fs_enc, $string);
+    }
+
+    protected function _fsToZip($string)
+    {
+        return self::_iconv_helper($this->_fs_enc, $this->_zip_int_enc, $string);
+    }
+
+    protected function _phpToFs($string)
+    {
+        return self::_iconv_helper($this->_php_int_enc, $this->_fs_enc, $string);
+    }
+
+    protected function _fsToPHP($string)
+    {
+        return self::_iconv_helper($this->_fs_enc, $this->_php_int_enc, $string);
+    }
+
+    public function addFile($filename, $localname = '', $start = 0, $length = 0)
+    {
+        if ('' === $localname) { // === allow '0' as filename
+            $localname = $this->_phpToZip($filename);
+        } else {
+            $localname = $this->_phpToZip($localname);
+        }
+
+        return parent::addFile($this->_phpToFs($filename), $localname);
+    }
+
+    protected function _addFileFromFS($filename, $localname = '')
+    {
+        if ('' === $localname) { // === allow '0' as filename
+            $localname = $this->_fsToZip($filename);
+        } else {
+            $localname = $this->_phpToZip($localname);
+        }
+
+        return parent::addFile($filename, $localname);
+    }
+
+    public function addFromString($name, $content)
+    {
+        return parent::addFromString($this->_phpToZip($name), $content);
+    }
+
+    public function getFromName($name, $length = 0, $flags = 0)
+    {
+        return parent::getFromName($this->_phpToZip($name), $length, $flags);
+    }
+
+    public function deleteName($name)
+    {
+        return parent::deleteName($this->_phpToZip($name));
+    }
+
+    public function addEmptyDir($name)
+    {
+        return parent::addEmptyDir($this->_phpToZip($name));
+    }
+
+    public function getNameIndex($index, $flags = 0)
+    {
+        return $this->_zipToPHP(parent::getNameIndex($index, $flags));
+    }
+
+    public function locateName($name, $flags = 0)
+    {
+        return parent::locateName($this->_phpToZip($name), $flags);
+    }
+
+    public function renameIndex($index, $name)
+    {
+        return parent::renameIndex($index, $this->_phpToZip($name));
+    }
+
+    public function renameName($old_name, $new_name)
+    {
+        return parent::renameName($this->_phpToZip($old_name), $this->_phpToZip($new_name));
+    }
+
+    public function setCommentName($name, $comment)
+    {
+        return parent::setCommentName($this->_phpToZip($name), $comment);
+    }
+
+    private function _decodeStatResult($ret)
+    {
+        if (is_array($ret) && isset($ret['name'])) {
+            $ret['name'] = $this->_zipToPHP($ret['name']);
+        }
+
+        return $ret;
+    }
+
+    public function statName($name, $flags = 0)
+    {
+        return $this->_decodeStatResult(parent::statName($this->_phpToZip($name), $flags));
+    }
+
+    public function statIndex($index, $flags = 0)
+    {
+        return $this->_decodeStatResult(parent::statIndex($index, $flags));
+    }
+
+    public function unchangeName($name)
+    {
+        return parent::unchangeName($this->_phpToZip($name));
+    }
+
+    public function getCommentName($name, $flags = 0)
+    {
+        return parent::getCommentName($this->_phpToZip($name), $flags);
+    }
+
+    public function getStream($entry)
+    {
+        return parent::getStream($this->_phpToZip($entry));
+    }
+
+    protected function mkdir_p($path)
+    {
+        $parts = preg_split('#/|' . preg_quote(DIRECTORY_SEPARATOR) . '#', $path, -1, PREG_SPLIT_NO_EMPTY);
+        $base = ('/' == iconv_substr($path, 0, 1, $this->_fs_enc) ? '/' : '');
+        foreach ($parts as $p) {
+            if (!file_exists($base . $p)) {
+                if (!mkdir($base . $p)) {
+                    return FALSE;
+                }
+            } else if (!is_dir($base . $p)) {
+                return FALSE;
+            }
+            $base .= $p . DIRECTORY_SEPARATOR;
+        }
+
+        return TRUE;
+    }
+
+    public function extractTo($destination, $entries = NULL)
+    {
+        if (NULL === $entries) {
+            for ($i = 0; $i < $this->numFiles; $i++) {
+                if (FALSE === ($name = $this->getNameIndex($i))) { // === allow '0' as filename
+                    return FALSE;
+                }
+                if (FALSE === ($content = $this->getFromIndex($i))) { // === allow '0' or empty content
+                    return FALSE;
+                }
+                $to = $this->_phpToFs($destination . $name);
+                if (!$this->mkdir_p(dirname($to))) {
+                    return FALSE;
+                }
+                if ('/' != mb_substr($name, -1, 1)) {
+                    if (FALSE === file_put_contents($to, $content)) { // === allow empty file creation (0 returned)
+                        return FALSE;
+                    }
+                }
+            }
+        } else {
+            if (is_string($entries)) {
+                $entries = array($entries);
+            }
+            // Alternate way: combine the zip stream wrapper to stream_copy_to_stream
+            foreach ($entries as $entry) {
+                if (FALSE === ($content = $this->getFromName($entry))) { // === allow '0' or empty content
+                    return FALSE;
+                }
+                $to = $this->_phpToFs($destination . $entry);
+                if (!$this->mkdir_p(dirname($to))) {
+                    return FALSE;
+                }
+                if ('/' != mb_substr($entry, -1, 1)) { // not safe
+                    if (FALSE === file_put_contents($to, $content)) { // === allow empty file creation (0 returned)
+                        return FALSE;
+                    }
+                }
+            }
+        }
+
+        return TRUE;
+    }
+
+    protected function _add_options(Array $options, &$add_path, &$remove_path, &$remove_all_path)
+    {
+        $remove_all_path = $remove_path = $add_path = FALSE;
+        if (isset($options['remove_all_path'])) {
+            $remove_all_path = !!$options['remove_all_path'];
+        }
+        if (isset($options['remove_path'])) {
+            if (!is_string($options['remove_path'])) {
+                // warning: add_path option expected to be a string
+                return FALSE;
+            }
+            if ('' === $options['remove_path']) {
+                // notice: Empty string given as the add_path option
+                return FALSE;
+            }
+            $remove_path = str_replace('\\', '/', $options['remove_path']);
+            if (!in_array(mb_substr($add_path, -1), array('/', '\\'))) {
+                $remove_path .= '/';
+            }
+        }
+        if (isset($options['add_path'])) {
+            if (!is_string($options['add_path'])) {
+                // warning: add_path option expected to be a string
+                return FALSE;
+            }
+            if ('' === $options['add_path']) {
+                // notice: Empty string given as the add_path option
+                return FALSE;
+            }
+            $add_path = str_replace('\\', '/', $options['add_path']);
+            /*if (!in_array(mb_substr($add_path, -1, 1), array('/', '\\'))) { // add unwanted leading / on Windows
+                $add_path .= '/';
+            }*/
+        }
+        return TRUE;
+    }
+
+    protected function _make_path($add_path, $remove_path, $remove_all_path, $dirname, $basename)
+    {
+        $dirname = $this->_fsToPHP($dirname);
+        $basename = $this->_fsToPHP($basename);
+
+        if ($add_path) {
+            if ($remove_all_path) {
+                $zipname = $basename;
+            } else if ($remove_path && 0 === mb_strpos($dirname, $remove_path)) {
+                $zipname = self::strip($remove_path, $dirname . '/' . $basename);
+            } else {
+                $zipname = $dirname . '/' . $basename;
+            }
+            $zipname = $add_path . $zipname;
+        } else {
+            $zipname = $dirname . '/' . $basename;
+        }
+
+        return $zipname;
+    }
+
+    public static function strip($prefix, $filename)
+    {
+        if (0 === mb_strpos($filename, $prefix)) {
+            $filename = mb_substr($filename, mb_strlen($prefix));
+        }
+
+        return $filename;
+    }
+
+    public function addPattern($pattern, $path = '.', $options = array())
+    {
+        $_pattern = $this->_phpToFs($pattern);
+        $_path = $this->_phpToFs($path);
+
+        /*if (!file_exists($_path)) {
+            throw new Exception(sprintf('"%s" does not exist', $path));
+        }
+
+        if (!is_dir($_path)) {
+            throw new Exception(sprintf('"%s" exists and is not a directory', $path));
+        }*/
+        if (!file_exists($_path) || !is_dir($_path)) {
+            return FALSE;
+        }
+
+        if (!$this->_add_options($options, $add_path, $remove_path, $remove_all_path)) {
+            return FALSE;
+        }
+
+        $iter = new RegexIterator(new DirectoryIterator($_path), $_pattern);
+        foreach ($iter as $entry) {
+            if ($entry->isDir() || $entry->isFile()) {
+                $zipname = $this->_make_path($add_path, $remove_path, $remove_all_path, $entry->getPath(), $entry->getFilename());
+                if ($entry->isDir()) {
+                    if (!$this->addEmptyDir($zipname)) {
+                        return FALSE;
+                    }
+                } else if ($entry->isFile()) {
+                    if (!$this->_addFileFromFS($entry->getRealPath(), $zipname)) {
+                        return FALSE;
+                    }
+                }
+            }
+        }
+
+        return TRUE;
+    }
+
+    public function addGlob($pattern, $flags = 0, $options = array())
+    {
+        $ret = glob($this->_phpToFs($pattern), $flags);
+        if (FALSE === $ret) { // === to distinguish empty array of failure (FALSE)
+            return FALSE;
+        } else {
+            if (!$this->_add_options($options, $add_path, $remove_path, $remove_all_path)) {
+                return FALSE;
+            }
+
+            foreach ($ret as $entry) {
+                $zipname = $this->_make_path($add_path, $remove_path, $remove_all_path, dirname($entry), basename($entry));
+				if (strrpos($zipname, './', -2) !== FALSE) $zipname = substr($zipname, 2, strlen($zipname)-2);
+                if (!$this->_addFileFromFS($entry, $zipname)) {
+                    return FALSE;
+                }
+            }
+
+            return TRUE;
+        }
+    }
+
+    public function addRecursive($directory, $options = array())
+    {
+        $_directory = $this->_phpToFs($directory);
+
+        /*if (!file_exists($_directory)) {
+            throw new Exception(sprintf('"%s" does not exist', $directory));
+        }
+
+        if (!is_dir($_directory)) {
+            throw new Exception(sprintf('"%s" exists and is not a directory', $directory));
+        }*/
+        if (!file_exists($_directory) || !is_dir($_directory)) {
+            return FALSE;
+        }
+
+        $this->_add_options($options, $add_path, $remove_path, $remove_all_path);
+        $iter = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($_directory), RecursiveIteratorIterator::SELF_FIRST);
+        foreach ($iter as $entry) {
+            if (!$iter->isDot() && ($entry->isDir() || $entry->isFile())) {
+                $zipname = $this->_make_path($add_path, $remove_path, $remove_all_path, $iter->getInnerIterator()->getPath(), $iter->getInnerIterator()->getSubPathname());
+                if ($entry->isDir()) {
+                    if (!$this->addEmptyDir($zipname)) {
+                        return FALSE;
+                    }
+                } else if ($entry->isFile()) {
+                    if (!$this->_addFileFromFS($iter->getRealPath(), $zipname)) {
+                        return FALSE;
+                    }
+                }
+            }
+        }
+
+        return TRUE;
+    }
+
+    public function rewind()
+    {
+        $this->_it_pos = 0;
+    }
+
+    public function current()
+    {
+        $ret = $this->statIndex($this->_it_pos);
+        if (is_array($ret)) {
+            $ret['comment'] = $this->getCommentIndex($this->_it_pos);
+        }
+
+        return $ret;
+    }
+
+    public function key()
+    {
+        return $this->_it_pos;
+    }
+
+    public function next()
+    {
+        $this->_it_pos++;
+    }
+
+    public function valid()
+    {
+        return $this->_it_pos < $this->numFiles;
+    }
+
+    public function count()
+    {
+        return $this->numFiles;
+    }
+
+    public function __toString()
+    {
+        return sprintf(
+            '%s (name: %s, file(s): %d, comment: %s, encodings: zip = %s, php = %s, file system = %s)',
+            version_compare(PHP_VERSION, '5.3.0', '>=') ? get_called_class() : __CLASS__,
+            $this->_fsToPHP($this->filename),
+            $this->numFiles,
+            $this->comment ? $this->comment : '-',
+            $this->_zip_int_enc,
+            $this->_php_int_enc,
+            $this->_fs_enc
+        );
+    }
+}

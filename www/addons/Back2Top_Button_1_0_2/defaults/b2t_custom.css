@@ -1,0 +1,43 @@
+.gp_Back2Top {
+background:rgb(44,62,80);
+background:rgba(44,62,80,0.8);
+color:rgb(255,255,255);
+color:rgba(255,255,255,0.8);
+border-radius:4px;
+font-size:100%;
+left:auto;
+bottom:30px;
+right:0;
+-webkit-opacity:0;
+-moz-opacity:0;
+opacity:0;
+-webkit-transform:translate(101%,0);
+-moz-transform:translate(101%,0);
+-ms-transform:translate(101%,0);
+transform:translate(101%,0);
+-webkit-transition:all 500ms;
+-moz-transition:all 500ms;
+-ms-transition:all 500ms;
+-o-transition:all 500ms;
+transition:all 500ms;
+}
+
+.gp_Back2Top.b2t-show {
+left:auto;
+right:30px;
+bottom:30px;
+-webkit-transform:translate(0,0);
+-moz-transform:translate(0,0);
+-ms-transform:translate(0,0);
+transform:translate(0,0);
+-webkit-opacity:1;
+-moz-opacity:1;
+opacity:1;
+}
+
+.gp_Back2Top.b2t-show:hover {
+background:rgb(44,62,80);
+background:rgba(44,62,80,1);
+color:rgb(255,255,255);
+color:rgba(255,255,255,1);
+}

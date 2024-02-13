@@ -1,0 +1,112 @@
+/*
+######################################################################
+CSS for gpEasy Slider Factory - Editor Component
+Author: J. Krausz
+Date: 2016-04-28
+Version: 1.0.1
+######################################################################
+*/
+
+#ckeditor_area .toolbar .gp_left {
+padding-left:20px;
+background:url(img/sf_icon16.png) left center no-repeat;
+}
+
+#ckeditor_area.docked .toolbar .gp_left {
+white-space:nowrap;
+position:relative;
+top:48px;
+-webkit-transform:rotate(90deg);
+-moz-transform:rotate(90deg);
+-ms-transform:rotate(90deg);
+transform:rotate(90deg);
+}
+
+#ckeditor_area:not(.docked) #ckeditor_bottom {
+display:none;
+}
+
+#gpSlider_options {
+-webkit-box-sizing:border-box;
+-moz-box-sizing:border-box;
+-ms-box-sizing:border-box;
+-o-box-sizing:border-box;
+box-sizing:border-box;
+padding-top:6px;
+margin:0 -5px 6px -5px;
+border-bottom:1px solid #ddd;
+}
+
+#gpSliderEdit_prev,
+#gpSliderEdit_next {
+-webkit-box-sizing:border-box;
+-moz-box-sizing:border-box;
+-ms-box-sizing:border-box;
+-o-box-sizing:border-box;
+box-sizing:border-box;
+width:100%!important;
+margin:0;
+background-image:url(img/prev_next_arrows.png)!important;
+background-position:center right!important;
+background-repeat:no-repeat!important;
+}
+
+#gpSliderEdit_prev {
+margin-right:2%;
+background-position:left center!important;
+}
+
+#ckeditor_area div.half_width,
+#ckeditor_area div.full_width {
+-webkit-box-sizing:border-box;
+-moz-box-sizing:border-box;
+-ms-box-sizing:border-box;
+-o-box-sizing:border-box;
+box-sizing:border-box;
+padding-top:0;
+padding-bottom:0
+}
+
+#ckeditor_area div.half_width, #ckeditor_area div.half_width:hover, #ckeditor_area div.half_width:focus {
+width:104px;
+}
+
+#ckeditor_area div.full_width, #ckeditor_area div.full_width:hover, #ckeditor_area div.full_width:focus {
+width:208px;
+}
+
+#ckeditor_area div.half_width label,
+#ckeditor_area div.full_width label {
+margin-bottom:0;
+}
+
+#ckeditor_area input[type="text"],
+#ckeditor_area input[type="number"],
+#ckeditor_area select,
+#ckeditor_area textarea {
+width:100%;
+border:none;
+border-radius:2px;
+height:20px;
+padding-left:4px;
+padding-right:4px;
+-webkit-box-sizing:border-box;
+-moz-box-sizing:border-box;
+-ms-box-sizing:border-box;
+-o-box-sizing:border-box;
+box-sizing:border-box;
+}
+
+
+/* resizable widget */
+.gpSlideWrapper div.ui-resizable-handle.ui-resizable-s {
+z-index:1000!important;
+height:20px!important;
+bottom:0!important;
+background:url(img/resize-handle.png) center bottom no-repeat!important;
+}
+.gpSlideWrapper div.ui-resizable-handle.ui-resizable-e,
+.gpSlideWrapper div.ui-resizable-handle.ui-resizable-se {
+display:none;
+}
+
