@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
+
+<svg
+   fill="#000000"
+   height="1106.4458"
+   width="2195.2415"
+   version="1.1"
+   id="Capa_1"
+   viewBox="0 0 1328.1212 669.3997"
+   xml:space="preserve"
+   sodipodi:docname="header.svg"
+   inkscape:version="1.3.2 (091e20e, 2023-11-25, custom)"
+   inkscape:export-filename="villa-svgrepo-com.png"
+   inkscape:export-xdpi="96"
+   inkscape:export-ydpi="96"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"><defs
+   id="defs9"><filter
+     style="color-interpolation-filters:sRGB"
+     inkscape:label="Drop Shadow"
+     id="filter10"
+     x="-0.010942778"
+     y="-0.081491508"
+     width="1.0307621"
+     height="1.2290874"><feFlood
+       result="flood"
+       in="SourceGraphic"
+       flood-opacity="0.498039"
+       flood-color="rgb(0,0,0)"
+       id="feFlood9" /><feGaussianBlur
+       result="blur"
+       in="SourceGraphic"
+       stdDeviation="3.000000"
+       id="feGaussianBlur9" /><feOffset
+       result="offset"
+       in="blur"
+       dx="6.000000"
+       dy="6.000000"
+       id="feOffset9" /><feComposite
+       result="comp1"
+       operator="in"
+       in="flood"
+       in2="offset"
+       id="feComposite9" /><feComposite
+       result="fbSourceGraphic"
+       operator="over"
+       in="SourceGraphic"
+       in2="comp1"
+       id="feComposite10" /><feColorMatrix
+       result="fbSourceGraphicAlpha"
+       in="fbSourceGraphic"
+       values="0 0 0 -1 0 0 0 0 -1 0 0 0 0 -1 0 0 0 0 1 0"
+       id="feColorMatrix10" /><feFlood
+       id="feFlood10"
+       result="flood"
+       in="fbSourceGraphic"
+       flood-opacity="0.498039"
+       flood-color="rgb(0,0,0)" /><feGaussianBlur
+       id="feGaussianBlur10"
+       result="blur"
+       in="fbSourceGraphic"
+       stdDeviation="3.000000" /><feOffset
+       id="feOffset10"
+       result="offset"
+       in="blur"
+       dx="6.000000"
+       dy="6.000000" /><feComposite
+       id="feComposite11"
+       result="comp1"
+       operator="in"
+       in="flood"
+       in2="offset" /><feComposite
+       id="feComposite12"
+       result="comp2"
+       operator="over"
+       in="fbSourceGraphic"
+       in2="comp1" /></filter></defs><sodipodi:namedview
+   id="namedview9"
+   pagecolor="#ffffff"
+   bordercolor="#000000"
+   borderopacity="0.25"
+   inkscape:showpageshadow="2"
+   inkscape:pageopacity="0.0"
+   inkscape:pagecheckerboard="0"
+   inkscape:deskcolor="#d1d1d1"
+   inkscape:zoom="0.28328465"
+   inkscape:cx="1094.3057"
+   inkscape:cy="457.13736"
+   inkscape:window-width="1600"
+   inkscape:window-height="837"
+   inkscape:window-x="-8"
+   inkscape:window-y="-8"
+   inkscape:window-maximized="1"
+   inkscape:current-layer="Capa_1" />
+<rect
+   style="fill:#f2f2f2;fill-opacity:0.533333;stroke:#ffffff;stroke-width:2.7521;stroke-dasharray:none;stroke-opacity:0.533333"
+   id="rect12"
+   width="1325.369"
+   height="285.302"
+   x="1.37605"
+   y="382.72165" /><g
+   id="g9"
+   transform="translate(423.48177,-68.14025)">
+	<path
+   d="M 478,151.859 H 335.48 v -5 h 11.486 c 2.665,0 5.011,-1.758 5.759,-4.316 0.748,-2.558 -0.281,-5.303 -2.526,-6.739 L 245.889,69.086 c -1.973,-1.261 -4.494,-1.261 -6.467,0 l -104.311,66.718 c -2.245,1.436 -3.274,4.181 -2.526,6.739 0.748,2.558 3.094,4.316 5.759,4.316 h 11.496 v 5 H 6 c -3.313,0 -6,2.687 -6,6 v 252 c 0,3.313 2.687,6 6,6 h 472 c 3.313,0 6,-2.687 6,-6 v -252 c 0,-3.313 -2.687,-6 -6,-6 z m -134,252 H 140 v -10 h 204 z m -32.5,-55 h -12 v -172 h 12 z m -47,33 v -27 c 0,-2.795 -1.914,-5.136 -4.5,-5.803 v -25.197 h 27.5 v 25.197 c -2.586,0.667 -4.5,3.009 -4.5,5.803 v 27 z m -68,-180 H 224 v 25 h -27.5 z m 0,37 H 224 v 16 h -27.5 z m 0,28 H 224 v 4 h -27.5 z m 0,16 H 224 v 29 h -27.5 z m 0,66.197 V 323.859 H 224 v 25.197 c -2.586,0.667 -4.5,3.009 -4.5,5.803 v 27 H 201 v -27 c 0,-2.794 -1.914,-5.136 -4.5,-5.803 z m 35,11.803 h 21 v 21 h -21 z m 28.5,-159 h 27.5 v 25 H 260 Z m 0,37 h 27.5 v 16 H 260 Z m 0,28 h 27.5 v 4 H 260 Z m 0,16 h 27.5 v 29 H 260 Z m 27.5,-93 H 260 v -13 h 27.5 z m -39.5,159 h -12 v -172 h 12 z m -24,-159 h -27.5 v -13 H 224 Z m -39.5,159 h -12 v -172 h 12 z m -24,0.197 c -2.586,0.667 -4.5,3.009 -4.5,5.803 v 6 H 12 v -169 h 148.5 z m 7.5,11.803 h 21 v 21 h -21 z m 127,21 v -21 h 21 v 21 z m 28.5,-32.803 V 191.859 H 472 v 169 H 328 v -6 c 0,-2.794 -1.914,-5.136 -4.5,-5.803 z M 472,163.859 v 16 H 323.5 v -3 h 5.98 c 3.313,0 6,-2.687 6,-6 v -7 z M 242.655,81.264 326.45,134.86 H 158.86 Z m 80.825,65.595 v 18 h -11.98 -12 -12 -27.5 -12 -12 -12 -27.5 -12 -12 -10.66 v -18 z m -173.64,17 v 7 c 0,3.313 2.687,6 6,6 h 4.66 v 3 H 12 v -16 z M 12,372.859 h 144 v 9 h -22 c -3.313,0 -6,2.687 -6,6 v 16 H 12 Z m 344,31 v -16 c 0,-3.313 -2.687,-6 -6,-6 h -22 v -9 h 144 v 31 z"
+   id="path1" />
+	<path
+   d="m 44.155,258.859 h 33 c 3.313,0 6,-2.687 6,-6 v -48 c 0,-3.313 -2.687,-6 -6,-6 h -33 c -3.313,0 -6,2.687 -6,6 v 48 c 0,3.314 2.687,6 6,6 z m 6,-12 v -20 h 21 v 20 z m 21,-36 v 4 h -21 v -4 z"
+   id="path2" />
+	<path
+   d="m 104.155,258.859 h 33 c 3.313,0 6,-2.687 6,-6 v -48 c 0,-3.313 -2.687,-6 -6,-6 h -33 c -3.313,0 -6,2.687 -6,6 v 48 c 0,3.314 2.687,6 6,6 z m 6,-12 v -20 h 21 v 20 z m 21,-36 v 4 h -21 v -4 z"
+   id="path3" />
+	<path
+   d="m 44.155,349.859 h 33 c 3.313,0 6,-2.687 6,-6 v -48 c 0,-3.313 -2.687,-6 -6,-6 h -33 c -3.313,0 -6,2.687 -6,6 v 48 c 0,3.314 2.687,6 6,6 z m 6,-12 v -20 h 21 v 20 z m 21,-36 v 4 h -21 v -4 z"
+   id="path4" />
+	<path
+   d="m 104.155,349.859 h 33 c 3.313,0 6,-2.687 6,-6 v -48 c 0,-3.313 -2.687,-6 -6,-6 h -33 c -3.313,0 -6,2.687 -6,6 v 48 c 0,3.314 2.687,6 6,6 z m 6,-12 v -20 h 21 v 20 z m 21,-36 v 4 h -21 v -4 z"
+   id="path5" />
+	<path
+   d="m 348.155,258.859 h 33 c 3.313,0 6,-2.687 6,-6 v -48 c 0,-3.313 -2.687,-6 -6,-6 h -33 c -3.313,0 -6,2.687 -6,6 v 48 c 0,3.314 2.687,6 6,6 z m 6,-12 v -20 h 21 v 20 z m 21,-36 v 4 h -21 v -4 z"
+   id="path6" />
+	<path
+   d="m 408.155,258.859 h 33 c 3.313,0 6,-2.687 6,-6 v -48 c 0,-3.313 -2.687,-6 -6,-6 h -33 c -3.313,0 -6,2.687 -6,6 v 48 c 0,3.314 2.687,6 6,6 z m 6,-12 v -20 h 21 v 20 z m 21,-36 v 4 h -21 v -4 z"
+   id="path7" />
+	<path
+   d="m 348.155,349.859 h 33 c 3.313,0 6,-2.687 6,-6 v -48 c 0,-3.313 -2.687,-6 -6,-6 h -33 c -3.313,0 -6,2.687 -6,6 v 48 c 0,3.314 2.687,6 6,6 z m 6,-12 v -20 h 21 v 20 z m 21,-36 v 4 h -21 v -4 z"
+   id="path8" />
+	<path
+   d="m 408.155,349.859 h 33 c 3.313,0 6,-2.687 6,-6 v -48 c 0,-3.313 -2.687,-6 -6,-6 h -33 c -3.313,0 -6,2.687 -6,6 v 48 c 0,3.314 2.687,6 6,6 z m 6,-12 v -20 h 21 v 20 z m 21,-36 v 4 h -21 v -4 z"
+   id="path9" />
+</g>
+<text
+   xml:space="preserve"
+   style="font-size:116.16px;font-family:'CheGuevara Text';-inkscape-font-specification:'CheGuevara Text';text-align:center;text-anchor:middle;fill:#1a1a1a;stroke:#e9e9e9;stroke-width:1.8755;stroke-dasharray:none;stroke-opacity:1"
+   x="659.79669"
+   y="487.44016"
+   id="text9"><tspan
+     sodipodi:role="line"
+     id="tspan9"
+     style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:116.16px;font-family:Mignon;-inkscape-font-specification:'Mignon Bold';fill:#1a1a1a;stroke:#e9e9e9;stroke-width:1.8755;stroke-dasharray:none;stroke-opacity:1"
+     x="659.79669"
+     y="487.44016">Villa de ensueño</tspan><tspan
+     sodipodi:role="line"
+     style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:116.16px;font-family:Mignon;-inkscape-font-specification:'Mignon Bold';fill:#1a1a1a;stroke:#e9e9e9;stroke-width:1.8755;stroke-dasharray:none;stroke-opacity:1"
+     x="659.79669"
+     y="635.34265"
+     id="tspan12">San José, Barrio Los Yoses</tspan></text></svg>
